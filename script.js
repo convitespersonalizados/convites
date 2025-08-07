@@ -59,12 +59,12 @@
         description: 'Design elegante com flores e tons pastéis, animação de pétalas caindo'
       },
       { 
-        src: 'conviteinfantil.png', 
+        src: 'conviteInfantil.png', 
         title: 'Festa Heróica | Aniversário do Pedro',
         description: 'Tema super-heróis com animação de efeitos especiais e música temática'
       },
       { 
-        src: 'conviteinfantil2.png', 
+        src: 'conviteInfantil2.png', 
         title: 'Chá de Fadas | Bebê Sophia',
         description: 'Tema unicórnio com animação mágica e efeitos brilhantes'
       },
