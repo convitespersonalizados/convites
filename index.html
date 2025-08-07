@@ -1,24 +1,89 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital & Chic</title>
+  <title>Digital & Chic - Convites Digitais e Artes Personalizadas</title>
+  <meta name="description" content="Criação de convites digitais personalizados e artes exclusivas para seus eventos especiais. Design único e compartilhável por link.">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nK2SwQnDMAxFX4aL0MZl6NgmXqI2TuLKNrZxGSe+wE0oSZAoP/3fP3mTJBkAz3O2cTAM4zi2bVsyTQAATdN4np/nufnXqto0TdM0TdO2bUsmADzPw+3+XC6X+/3+er3eZDLp8Xj8crlc7/c7Ho/HbDabKIqmaZqmabqu64ZhGIZhGIaPxyOZTIZhGIb3+/3ZbHZTlU3TNE3TdE3bdh3Hcdz3/c/zPP8P+xkO6eM4zgAAAABJRU5ErkJggg==">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAvklEQVR4nK2SwQnDMAxFX4aL0MZl6NgmXqI2TuLKNrZxGSe+wE0oSZAoP/3fP3mTJBkAz3O2cTAM4zi2bVsyTQAATdN4np/nufnXqto0TdM0TdO2bUsmADzPw+3+XC6X+/3+er3eZDLp8Xj8crlc7/c7Ho/HbDRbKIqmaZqmabqu64ZhGIZhGIaPxyOZTIZhGIb3+/3ZbHZTlU3TNE3TdE3bdh3Hcdz3/c/zPP8P+xkO6eM4zgAAAABJRU5ErkJggg==">
   <style>
-    body { font-family: 'Arial', sans-serif; background-color: #fff; }
+    body { font-family: 'Open Sans', sans-serif; background-color: #fff; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
     .navbar { transition: all 0.3s ease; }
     .navbar.scrolled { background-color: rgba(255, 255, 255, 0.95); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
     .hero { background: linear-gradient(135deg, #f8f1f1 0%, #f9e4e4 100%); }
-    .portfolio-item { transition: transform 0.3s ease; }
-    .portfolio-item:hover { transform: scale(1.05); }
+    .portfolio-item { transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .portfolio-item:hover { 
+      transform: scale(1.05) rotate(1deg); 
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    .portfolio-item .item-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+      color: white;
+      padding: 1rem;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    .portfolio-item:hover .item-overlay {
+      transform: translateY(0);
+    }
     .audio-player { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
     .form-input { transition: all 0.3s ease; }
     .form-input:focus { border-color: #d4af37; }
+    .feature-box { transition: all 0.3s ease; }
+    .feature-box:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+    .process-step { position: relative; }
+    .process-step:not(:last-child):after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -50px;
+      width: 40px;
+      height: 2px;
+      background: #d4af37;
+      display: none;
+    }
+    .faq-item { transition: all 0.3s ease; }
+    .faq-item:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    .badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 0.25rem 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      z-index: 10;
+    }
+    .badge-popular {
+      background-color: #f59e0b;
+      color: white;
+    }
+    .badge-new {
+      background-color: #10b981;
+      color: white;
+    }
+    .badge-favorite {
+      background-color: #ec4899;
+      color: white;
+    }
+    .filter-btn {
+      transition: all 0.3s ease;
+    }
+    .filter-btn.active {
+      background-color: #ec4899;
+      color: white;
+    }
     
     /* Estilos específicos para mobile (telas menores que 768px) */
     @media (max-width: 768px) {
@@ -36,10 +101,11 @@
       .btn-group a { width: 100%; }
       
       /* Grids em coluna única */
-      .feature-grid, .portfolio-grid, .process-grid { grid-template-columns: 1fr; }
+      .portfolio-grid, .process-grid { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr 1fr; }
       
       /* Padding reduzido */
-      .container { padding-left: 1rem; padding-right: 1rem; }
+      .container { padding-left: 1.5rem; padding-right: 1.5rem; }
       
       /* Player de música menor */
       .audio-player { bottom: 10px; right: 10px; }
@@ -79,12 +145,24 @@
       form input, form textarea, form button {
         width: 100%;
       }
+      
+      /* Espaçamento entre seções */
+      section { padding-top: 3rem; padding-bottom: 3rem; }
+      
+      /* Process steps - esconde linha */
+      .process-step:after { display: none !important; }
     }
     
     /* Estilos específicos para desktop (telas maiores que 768px) */
     @media (min-width: 769px) {
       .menu-toggle { display: none; }
       .mobile-menu { display: none !important; }
+      
+      /* Mostra linha entre passos */
+      .process-step:not(:last-child):after { display: block; }
+      
+      /* Espaçamento entre seções */
+      section { padding-top: 5rem; padding-bottom: 5rem; }
     }
   </style>
 </head>
@@ -100,6 +178,7 @@
         <a href="#sobre" class="text-gray-700 hover:text-pink-500">Sobre</a>
         <a href="#portfolio" class="text-gray-700 hover:text-pink-500">Portfólio</a>
         <a href="#como-funciona" class="text-gray-700 hover:text-pink-500">Como Funciona</a>
+        <a href="#faq" class="text-gray-700 hover:text-pink-500">FAQ</a>
         <a href="#contato" class="text-gray-700 hover:text-pink-500">Contato</a>
       </div>
       
@@ -116,6 +195,7 @@
         <a href="#sobre" class="text-gray-700 hover:text-pink-500">Sobre</a>
         <a href="#portfolio" class="text-gray-700 hover:text-pink-500">Portfólio</a>
         <a href="#como-funciona" class="text-gray-700 hover:text-pink-500">Como Funciona</a>
+        <a href="#faq" class="text-gray-700 hover:text-pink-500">FAQ</a>
         <a href="#contato" class="text-gray-700 hover:text-pink-500">Contato</a>
       </div>
     </div>
@@ -124,40 +204,77 @@
   <!-- Seção Início -->
   <section id="inicio" class="hero min-h-screen flex items-center justify-center text-center pt-16">
     <div class="container mx-auto px-4" data-aos="fade-up">
-      <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
-        Convites digitais e artes personalizadas para momentos inesquecíveis.
-      </h1>
-      <div class="btn-group flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mt-6">
-        <a href="#portfolio" class="inline-block bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600">Ver Portfólio</a>
-        <a href="https://wa.me/5599992267318?text=Oi%20gostaria%20de%20fazer%20um%20convite%20digital%20personalizado!%20✨" class="inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600">Fale comigo no WhatsApp</a>
-        <a href="https://instagram.com" class="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900">Siga no Instagram</a>
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <h1 class="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
+            Convites <span class="text-pink-500">digitais</span> e artes <span class="text-pink-500">personalizadas</span> para momentos inesquecíveis.
+          </h1>
+          <p class="text-lg text-gray-600 mb-6">Design exclusivo e compartilhável por link para seu evento especial</p>
+          
+          <div class="btn-group flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0 mt-6">
+            <a href="#portfolio" class="inline-flex items-center justify-center bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600">
+              <i class="fas fa-images mr-2"></i> Ver Portfólio
+            </a>
+            <a href="https://wa.me/5599992267318?text=Oi%20gostaria%20de%20fazer%20um%20convite%20digital%20personalizado!%20✨" class="inline-flex items-center justify-center bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600">
+              <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+            </a>
+            <a href="https://instagram.com" class="inline-flex items-center justify-center bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900">
+              <i class="fab fa-instagram mr-2"></i> Instagram
+            </a>
+          </div>
+          
+          <!-- Botão de música visível no hero -->
+          <div class="mt-8">
+            <button onclick="toggleMusic()" class="bg-white text-pink-500 px-4 py-2 rounded-full shadow hover:bg-pink-50">
+              <i id="heroMusicIcon" class="fas fa-volume-up mr-2"></i>
+              <span id="heroMusicText">Ligar música</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Imagem ilustrativa no desktop -->
+        <div class="md:w-1/2 hidden md:block" data-aos="fade-left">
+          <img src="9fcad9a2-ec8c-44be-9302-678978b8b3aa.png" alt="Design digital criativo" class="w-full rounded-lg shadow-xl">
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Seção Sobre -->
-  <section id="sobre" class="py-16 bg-beige-100">
+  <section id="sobre" class="py-16 bg-gray-50">
     <div class="container mx-auto px-4 text-center" data-aos="fade-up">
       <h2 class="text-3xl font-bold text-gray-800 mb-6">Sobre</h2>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">
         Aqui, o digital encontra o estilo. Crio convites digitais, páginas de evento e artes personalizadas sob medida para você ou sua marca. Do simples ao sofisticado, tudo com muito carinho e atenção aos detalhes.
       </p>
-      <div class="feature-grid grid grid-cols-1 md:grid-cols-4 gap-6 mt-8">
-        <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow">
-          <i class="fas fa-paint-brush text-3xl text-pink-500 mb-2"></i>
-          <p class="font-medium">100% personalizado</p>
+      <div class="feature-grid grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+        <div class="feature-box flex flex-col items-center p-6 bg-white rounded-lg shadow hover:shadow-lg">
+          <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-4">
+            <i class="fas fa-paint-brush text-2xl text-pink-500"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">100% personalizado</h3>
+          <p class="text-gray-600 text-sm">Criado especialmente para seu evento</p>
         </div>
-        <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow">
-          <i class="fas fa-star text-3xl text-pink-500 mb-2"></i>
-          <p class="font-medium">Design exclusivo</p>
+        <div class="feature-box flex flex-col items-center p-6 bg-white rounded-lg shadow hover:shadow-lg">
+          <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-4">
+            <i class="fas fa-star text-2xl text-pink-500"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Design exclusivo</h3>
+          <p class="text-gray-600 text-sm">Arte única e original</p>
         </div>
-        <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow">
-          <i class="fas fa-link text-3xl text-pink-500 mb-2"></i>
-          <p class="font-medium">Compartilhável por link</p>
+        <div class="feature-box flex flex-col items-center p-6 bg-white rounded-lg shadow hover:shadow-lg">
+          <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-4">
+            <i class="fas fa-link text-2xl text-pink-500"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Compartilhável</h3>
+          <p class="text-gray-600 text-sm">Envie por link ou redes sociais</p>
         </div>
-        <div class="flex flex-col items-center p-4 bg-white rounded-lg shadow">
-          <i class="fas fa-rocket text-3xl text-pink-500 mb-2"></i>
-          <p class="font-medium">Entrega rápida</p>
+        <div class="feature-box flex flex-col items-center p-6 bg-white rounded-lg shadow hover:shadow-lg">
+          <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-4">
+            <i class="fas fa-rocket text-2xl text-pink-500"></i>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Entrega rápida</h3>
+          <p class="text-gray-600 text-sm">Pronto em poucos dias</p>
         </div>
       </div>
     </div>
@@ -167,74 +284,368 @@
   <section id="portfolio" class="py-16 bg-white">
     <div class="container mx-auto px-4 text-center" data-aos="fade-up">
       <h2 class="text-3xl font-bold text-gray-800 mb-6">Portfólio</h2>
-      <div class="portfolio-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div class="portfolio-item">
-          <img src="convite1.png" alt="Convite 1" class="w-full rounded-lg cursor-pointer" onclick="openModal('convite1.png')">
+      <p class="text-gray-600 max-w-2xl mx-auto mb-8">Confira alguns dos nossos trabalhos mais recentes</p>
+      
+      <!-- Filtros por categoria -->
+      <div class="flex flex-wrap justify-center gap-2 mb-8">
+        <button class="filter-btn active px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="all">Todos</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="casamento">Casamento</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="aniversario">Aniversário</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="cha-de-bebe">Chá de Bebê</button>
+        <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="corporativo">Corporativo</button>
+      </div>
+      
+      <div class="portfolio-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <!-- Item 1 - Casamento -->
+        <div class="portfolio-item" data-category="casamento">
+          <div class="relative overflow-hidden rounded-lg shadow">
+            <span class="badge badge-popular">Mais pedido</span>
+            <img src="Casamento.png" loading="lazy" alt="Convite digital para casamento - tema romântico com flores" class="w-full h-64 object-cover">
+            <div class="item-overlay">
+              <h3 class="font-bold text-white">Convite Romântico | Casamento Marina & João</h3>
+              <p class="text-sm text-gray-200">Design elegante com flores e tons pastéis, animação de pétalas caindo</p>
+            </div>
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="font-bold text-gray-800">Casamento Romântico</h3>
+            <p class="text-sm text-gray-600">Tema Flores e Tons Pastéis</p>
+            <div class="mt-3 flex justify-center space-x-2">
+              <button onclick="openVideoModal('https://example.com/video-casamento.mp4')" class="text-pink-500 hover:text-pink-700 text-sm">
+                <i class="fas fa-play mr-1"></i> Ver animação
+              </button>
+              <a href="https://wa.me/5599992267318?text=Oi%20gostei%20muito%20do%20convite%20de%20casamento%20romântico%20(flores%20e%20tons%20pastéis),%20gostaria%20de%20fazer%20um%20parecido%20✨" class="text-green-500 hover:text-green-700 text-sm">
+                <i class="fab fa-whatsapp mr-1"></i> Solicitar igual
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="portfolio-item">
-          <img src="Convite2.png" alt="Convite 2" class="w-full rounded-lg cursor-pointer" onclick="openModal('Convite2.png')">
+        
+        <!-- Item 2 - Aniversário -->
+        <div class="portfolio-item" data-category="aniversario">
+          <div class="relative overflow-hidden rounded-lg shadow">
+            <span class="badge badge-new">Novo</span>
+            <img src="conviteinfantil.png" loading="lazy" alt="Convite digital para aniversário infantil - tema super-heróis" class="w-full h-64 object-cover">
+            <div class="item-overlay">
+              <h3 class="font-bold text-white">Festa Heróica | Aniversário do Pedro</h3>
+              <p class="text-sm text-gray-200">Tema super-heróis com animação de efeitos especiais e música temática</p>
+            </div>
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="font-bold text-gray-800">Aniversário Infantil</h3>
+            <p class="text-sm text-gray-600">Tema Super-Heróis</p>
+            <div class="mt-3 flex justify-center space-x-2">
+              <button onclick="openVideoModal('https://example.com/video-aniversario.mp4')" class="text-pink-500 hover:text-pink-700 text-sm">
+                <i class="fas fa-play mr-1"></i> Ver animação
+              </button>
+              <a href="https://wa.me/5599992267318?text=Oi%20gostei%20muito%20do%20convite%20de%20aniversário%20infantil%20(tema%20super-heróis),%20gostaria%20de%20fazer%20um%20parecido%20✨" class="text-green-500 hover:text-green-700 text-sm">
+                <i class="fab fa-whatsapp mr-1"></i> Solicitar igual
+              </a>
+            </div>
+          </div>
         </div>
-        <div class="portfolio-item">
-          <img src="Convite3.png" alt="Convite 3" class="w-full rounded-lg cursor-pointer" onclick="openModal('Convite3.png')">
+         <!-- Item 2.2 - Aniversário -->
+        <div class="portfolio-item" data-category="aniversario">
+          <div class="relative overflow-hidden rounded-lg shadow">
+            <span class="badge badge-new">Novo</span>
+            <img src="conviteinfantil2.png" loading="lazy" alt="Convite digital para aniversário infantil - tema super-heróis" class="w-full h-64 object-cover">
+            <div class="item-overlay">
+              <h3 class="font-bold text-white">Festa Heróica | Aniversário do Pedro</h3>
+              <p class="text-sm text-gray-200">Tema super-heróis com animação de efeitos especiais e música temática</p>
+            </div>
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="font-bold text-gray-800">Aniversário Infantil</h3>
+            <p class="text-sm text-gray-600">Tema Super-Heróis</p>
+            <div class="mt-3 flex justify-center space-x-2">
+              <button onclick="openVideoModal('https://example.com/video-aniversario.mp4')" class="text-pink-500 hover:text-pink-700 text-sm">
+                <i class="fas fa-play mr-1"></i> Ver animação
+              </button>
+              <a href="https://wa.me/5599992267318?text=Oi%20gostei%20muito%20do%20convite%20de%20aniversário%20infantil%20(tema%20super-heróis),%20gostaria%20de%20fazer%20um%20parecido%20✨" class="text-green-500 hover:text-green-700 text-sm">
+                <i class="fab fa-whatsapp mr-1"></i> Solicitar igual
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Item 3 - Chá de Bebê -->
+        <div class="portfolio-item" data-category="cha-de-bebe">
+          <div class="relative overflow-hidden rounded-lg shadow">
+            <span class="badge badge-favorite">Favorito</span>
+            <img src="invalid.png" loading="lazy" alt="Convite digital para chá de bebê - tema unicórnio" class="w-full h-64 object-cover">
+            <div class="item-overlay">
+              <h3 class="font-bold text-white">Chá de Fadas | Bebê Sophia</h3>
+              <p class="text-sm text-gray-200">Tema unicórnio com animação mágica e efeitos brilhantes</p>
+            </div>
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="font-bold text-gray-800">Chá de Bebê</h3>
+            <p class="text-sm text-gray-600">Tema Unicórnio</p>
+            <div class="mt-3 flex justify-center space-x-2">
+              <button onclick="openVideoModal('https://example.com/video-cha-bebe.mp4')" class="text-pink-500 hover:text-pink-700 text-sm">
+                <i class="fas fa-play mr-1"></i> Ver animação
+              </button>
+              <a href="https://wa.me/5599992267318?text=Oi%20gostei%20muito%20do%20convite%20de%20chá%20de%20bebê%20(tema%20unicórnio),%20gostaria%20de%20fazer%20um%20parecido%20✨" class="text-green-500 hover:text-green-700 text-sm">
+                <i class="fab fa-whatsapp mr-1"></i> Solicitar igual
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Item 4 - Corporativo -->
+        <div class="portfolio-item" data-category="corporativo">
+          <div class="relative overflow-hidden rounded-lg shadow">
+            <img src="https://via.placeholder.com/600x400?text=Convite+Corporativo" loading="lazy" alt="Convite digital para evento corporativo - tema profissional" class="w-full h-64 object-cover">
+            <div class="item-overlay">
+              <h3 class="font-bold text-white">Lançamento Corporativo | Tech Solutions</h3>
+              <p class="text-sm text-gray-200">Design profissional com animação moderna e interativa</p>
+            </div>
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="font-bold text-gray-800">Evento Corporativo</h3>
+            <p class="text-sm text-gray-600">Tema Profissional</p>
+            <div class="mt-3 flex justify-center space-x-2">
+              <button onclick="openVideoModal('https://example.com/video-corporativo.mp4')" class="text-pink-500 hover:text-pink-700 text-sm">
+                <i class="fas fa-play mr-1"></i> Ver animação
+              </button>
+              <a href="https://wa.me/5599992267318?text=Oi%20gostei%20muito%20do%20convite%20corporativo%20(tema%20profissional),%20gostaria%20de%20fazer%20um%20parecido%20✨" class="text-green-500 hover:text-green-700 text-sm">
+                <i class="fab fa-whatsapp mr-1"></i> Solicitar igual
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Item 5 - Casamento -->
+        <div class="portfolio-item" data-category="casamento">
+          <div class="relative overflow-hidden rounded-lg shadow">
+            <img src="https://via.placeholder.com/600x400?text=Convite+Casamento+2" loading="lazy" alt="Convite digital para casamento - tema rústico" class="w-full h-64 object-cover">
+            <div class="item-overlay">
+              <h3 class="font-bold text-white">Casamento Campestre | Ana & Lucas</h3>
+              <p class="text-sm text-gray-200">Tema rústico com animação de natureza e efeitos orgânicos</p>
+            </div>
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="font-bold text-gray-800">Casamento Rústico</h3>
+            <p class="text-sm text-gray-600">Tema Campestre</p>
+            <div class="mt-3 flex justify-center space-x-2">
+              <button onclick="openVideoModal('https://example.com/video-casamento2.mp4')" class="text-pink-500 hover:text-pink-700 text-sm">
+                <i class="fas fa-play mr-1"></i> Ver animação
+              </button>
+              <a href="https://wa.me/5599992267318?text=Oi%20gostei%20muito%20do%20convite%20de%20casamento%20(tema%20campestre),%20gostaria%20de%20fazer%20um%20parecido%20✨" class="text-green-500 hover:text-green-700 text-sm">
+                <i class="fab fa-whatsapp mr-1"></i> Solicitar igual
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Item 6 - Aniversário -->
+        <div class="portfolio-item" data-category="aniversario">
+          <div class="relative overflow-hidden rounded-lg shadow">
+            <span class="badge badge-new">Novo</span>
+            <img src="https://via.placeholder.com/600x400?text=Convite+Aniversário+2" loading="lazy" alt="Convite digital para aniversário - tema festa junina" class="w-full h-64 object-cover">
+            <div class="item-overlay">
+              <h3 class="font-bold text-white">Arraiá da Julia | Festa Junina</h3>
+              <p class="text-sm text-gray-200">Tema festa junina com animação de fogos e quadrilha</p>
+            </div>
+          </div>
+          <div class="mt-4 text-center">
+            <h3 class="font-bold text-gray-800">Festa Junina</h3>
+            <p class="text-sm text-gray-600">Tema Arraiá</p>
+            <div class="mt-3 flex justify-center space-x-2">
+              <button onclick="openVideoModal('https://example.com/video-junina.mp4')" class="text-pink-500 hover:text-pink-700 text-sm">
+                <i class="fas fa-play mr-1"></i> Ver animação
+              </button>
+              <a href="https://wa.me/5599992267318?text=Oi%20gostei%20muito%20do%20convite%20de%20festa%20junina%20(tema%20arraiá),%20gostaria%20de%20fazer%20um%20parecido%20✨" class="text-green-500 hover:text-green-700 text-sm">
+                <i class="fab fa-whatsapp mr-1"></i> Solicitar igual
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-      <a href="https://instagram.com" class="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg mt-8 hover:bg-gray-900">Ver mais no Instagram</a>
+      
+      <a href="https://instagram.com" class="inline-flex items-center justify-center bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-3 rounded-lg mt-8 hover:from-pink-600 hover:to-purple-600 transition-all">
+        <i class="fab fa-instagram mr-2"></i> Ver mais no Instagram
+      </a>
     </div>
   </section>
 
   <!-- Modal para Portfólio -->
   <div id="portfolioModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-    <div class="bg-white p-4 rounded-lg max-w-3xl w-full mx-4">
-      <img id="modalImage" src="" alt="Imagem ampliada" class="w-full">
-      <button onclick="closeModal()" class="mt-4 bg-pink-500 text-white px-4 py-2 rounded-lg w-full md:w-auto">Fechar</button>
+    <div class="bg-white p-6 rounded-lg max-w-4xl w-full mx-4" data-aos="zoom-in">
+      <div class="flex justify-between items-center mb-4">
+        <h3 id="modalTitle" class="text-xl font-bold text-gray-800"></h3>
+        <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <img id="modalImage" src="" alt="Imagem ampliada" class="w-full rounded-lg">
+      <div class="flex justify-between mt-4">
+        <button onclick="prevImage()" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300">
+          <i class="fas fa-chevron-left mr-2"></i> Anterior
+        </button>
+        <span id="imageCounter" class="self-center text-gray-600"></span>
+        <button onclick="nextImage()" class="bg-pink-500 text-white px-4 py-2 rounded-lg hover:bg-pink-600">
+          Próximo <i class="fas fa-chevron-right ml-2"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para Vídeo -->
+  <div id="videoModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white p-6 rounded-lg max-w-4xl w-full mx-4">
+      <div class="flex justify-between items-center mb-4">
+        <h3 id="videoTitle" class="text-xl font-bold text-gray-800">Demonstração do Convite</h3>
+        <button onclick="closeVideoModal()" class="text-gray-500 hover:text-gray-700">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="aspect-w-16 aspect-h-9">
+        <video id="demoVideo" controls class="w-full rounded-lg">
+          <source id="videoSource" src="" type="video/mp4">
+          Seu navegador não suporta vídeos HTML5.
+        </video>
+      </div>
+      <div class="mt-4 text-center">
+        <a id="whatsappLink" href="#" class="inline-flex items-center justify-center bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+          <i class="fab fa-whatsapp mr-2"></i> Solicitar este modelo
+        </a>
+      </div>
     </div>
   </div>
 
   <!-- Seção Como Funciona -->
-  <section id="como-funciona" class="py-16 bg-beige-100">
+  <section id="como-funciona" class="py-16 bg-gray-50">
     <div class="container mx-auto px-4 text-center" data-aos="fade-up">
       <h2 class="text-3xl font-bold text-gray-800 mb-6">Como Funciona?</h2>
-      <div class="process-grid grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow">
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">Um processo simples e personalizado para criar seu convite digital perfeito</p>
+      
+      <div class="process-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="process-step flex flex-col items-center p-6 bg-white rounded-lg shadow">
+          <div class="w-16 h-16 bg-pink-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">1</div>
           <i class="fas fa-lightbulb text-4xl text-pink-500 mb-4"></i>
-          <p class="text-lg font-medium">1. Você me conta sua ideia ✨</p>
+          <h3 class="text-lg font-medium mb-2">Você me conta sua ideia</h3>
+          <p class="text-gray-600">Me conte sobre seu evento e preferências de estilo</p>
         </div>
-        <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow">
+        <div class="process-step flex flex-col items-center p-6 bg-white rounded-lg shadow">
+          <div class="w-16 h-16 bg-pink-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">2</div>
           <i class="fas fa-paint-roller text-4xl text-pink-500 mb-4"></i>
-          <p class="text-lg font-medium">2. Crio um modelo exclusivo 🎨</p>
+          <h3 class="text-lg font-medium mb-2">Crio um modelo exclusivo</h3>
+          <p class="text-gray-600">Desenvolvo um design personalizado para sua aprovação</p>
         </div>
-        <div class="flex flex-col items-center p-6 bg-white rounded-lg shadow">
+        <div class="process-step flex flex-col items-center p-6 bg-white rounded-lg shadow">
+          <div class="w-16 h-16 bg-pink-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mb-4">3</div>
           <i class="fas fa-share-alt text-4xl text-pink-500 mb-4"></i>
-          <p class="text-lg font-medium">3. Você aprova e compartilha 🔗</p>
+          <h3 class="text-lg font-medium mb-2">Você aprova e compartilha</h3>
+          <p class="text-gray-600">Após ajustes, você recebe o link para compartilhar</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção FAQ -->
+  <section id="faq" class="py-16 bg-white">
+    <div class="container mx-auto px-4" data-aos="fade-up">
+      <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Perguntas Frequentes</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8 text-center">Tire suas dúvidas sobre nossos serviços</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div class="faq-item p-6 bg-gray-50 rounded-lg border border-gray-200">
+          <h3 class="font-bold text-lg text-pink-500 mb-2">Qual o prazo de entrega?</h3>
+          <p class="text-gray-600">O prazo médio é de 3 a 5 dias úteis após a aprovação do layout. Para urgências, consulte disponibilidade.</p>
+        </div>
+        <div class="faq-item p-6 bg-gray-50 rounded-lg border border-gray-200">
+          <h3 class="font-bold text-lg text-pink-500 mb-2">Como recebo o convite?</h3>
+          <p class="text-gray-600">Você receberá um link exclusivo que pode ser compartilhado por WhatsApp, e-mail ou redes sociais.</p>
+        </div>
+        <div class="faq-item p-6 bg-gray-50 rounded-lg border border-gray-200">
+          <h3 class="font-bold text-lg text-pink-500 mb-2">Posso pedir alterações depois?</h3>
+          <p class="text-gray-600">Sim, incluo até 2 alterações após a primeira versão. Alterações adicionais podem ter custo extra.</p>
+        </div>
+        <div class="faq-item p-6 bg-gray-50 rounded-lg border border-gray-200">
+          <h3 class="font-bold text-lg text-pink-500 mb-2">Quais as formas de pagamento?</h3>
+          <p class="text-gray-600">Aceitamos PIX, transferência bancária e parcelamento no cartão (com acréscimo).</p>
+        </div>
+        <div class="faq-item p-6 bg-gray-50 rounded-lg border border-gray-200">
+          <h3 class="font-bold text-lg text-pink-500 mb-2">É compatível com WhatsApp?</h3>
+          <p class="text-gray-600">Sim, o link do convite abre perfeitamente no WhatsApp e em todas as plataformas.</p>
+        </div>
+        <div class="faq-item p-6 bg-gray-50 rounded-lg border border-gray-200">
+          <h3 class="font-bold text-lg text-pink-500 mb-2">Posso imprimir o convite digital?</h3>
+          <p class="text-gray-600">Sim, fornecemos também uma versão em alta resolução para impressão, se necessário.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Seção Contato -->
-  <section id="contato" class="py-16 bg-white">
+  <section id="contato" class="py-16 bg-gray-50">
     <div class="container mx-auto px-4 text-center" data-aos="fade-up">
       <h2 class="text-3xl font-bold text-gray-800 mb-6">Contato</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">Entre em contato para solicitar um orçamento ou tirar dúvidas</p>
+      
       <div class="space-y-4 md:space-x-4 md:space-y-0 mb-8 flex flex-col md:flex-row justify-center">
-        <a href="https://wa.me/5599992267318?text=Oi%20gostaria%20de%20fazer%20um%20convite%20digital%20personalizado!%20✨" class="inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600">Fale comigo agora</a>
-        <a href="https://instagram.com" class="inline-block bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900">Veja meu trabalho</a>
+        <a href="https://wa.me/5599992267318?text=Oi%20gostaria%20de%20fazer%20um%20convite%20digital%20personalizado!%20✨" class="inline-flex items-center justify-center bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600">
+          <i class="fab fa-whatsapp mr-2"></i> Fale comigo agora
+        </a>
+        <a href="https://instagram.com" class="inline-flex items-center justify-center bg-gray-800 text-white px-6 py-3 rounded-lg hover:bg-gray-900">
+          <i class="fab fa-instagram mr-2"></i> Veja meu trabalho
+        </a>
       </div>
-      <form class="max-w-lg mx-auto">
-        <input type="text" placeholder="Nome" class="form-input w-full p-3 mb-4 border rounded-lg">
-        <input type="email" placeholder="E-mail" class="form-input w-full p-3 mb-4 border rounded-lg">
-        <textarea placeholder="Mensagem" class="form-input w-full p-3 mb-4 border rounded-lg" rows="4"></textarea>
-        <button type="button" class="bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 w-full md:w-auto">Enviar</button>
+      
+      <form id="contactForm" class="max-w-lg mx-auto">
+        <div class="relative mb-4">
+          <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          <input type="text" placeholder="Nome" class="form-input w-full pl-10 p-3 border rounded-lg focus:border-pink-500">
+        </div>
+        <div class="relative mb-4">
+          <i class="fas fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+          <input type="email" placeholder="E-mail" class="form-input w-full pl-10 p-3 border rounded-lg focus:border-pink-500">
+        </div>
+        <div class="relative mb-4">
+          <i class="fas fa-edit absolute left-3 top-4 text-gray-400"></i>
+          <textarea placeholder="Mensagem" class="form-input w-full pl-10 p-3 border rounded-lg focus:border-pink-500" rows="4"></textarea>
+        </div>
+        <button type="button" onclick="submitForm()" class="bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 w-full md:w-auto flex items-center justify-center">
+          <i class="fas fa-paper-plane mr-2"></i> Enviar Mensagem
+        </button>
       </form>
+      
+      <!-- Mensagem de sucesso (inicialmente escondida) -->
+      <div id="successMessage" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-lg">
+        <i class="fas fa-check-circle mr-2"></i> Mensagem enviada com sucesso! Entrarei em contato em breve.
+      </div>
     </div>
   </section>
 
   <!-- Rodapé -->
-  <footer class="py-8 bg-beige-100 text-center">
-    <p class="text-gray-600">Feito com 💖 por Digital & Chic</p>
-    <div class="space-y-2 md:space-x-4 md:space-y-0 mt-4 flex flex-col md:flex-row justify-center">
-      <a href="https://wa.me/5599992267318?text=Oi%20gostaria%20de%20fazer%20um%20convite%20digital%20personalizado!%20✨" class="text-gray-600 hover:text-pink-500">WhatsApp</a>
-      <a href="https://instagram.com" class="text-gray-600 hover:text-pink-500">Instagram</a>
-      <a href="#" class="text-gray-600 hover:text-pink-500">Política de Privacidade</a>
+  <footer class="py-12 bg-gray-800 text-white">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-6 md:mb-0">
+          <div class="text-2xl font-bold text-pink-300 mb-2">Digital & Chic</div>
+          <p class="text-gray-400">Convites digitais e artes personalizadas</p>
+          <p class="text-gray-400 mt-2">© <span id="currentYear"></span> Todos os direitos reservados</p>
+        </div>
+        
+        <div class="flex flex-col">
+          <div class="flex space-x-4 mb-4 justify-center md:justify-end">
+            <a href="https://wa.me/5599992267318?text=Oi%20gostaria%20de%20fazer%20um%20convite%20digital%20personalizado!%20✨" class="text-gray-300 hover:text-green-400 text-xl">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://instagram.com" class="text-gray-300 hover:text-pink-400 text-xl">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="mailto:contato@digitalchic.com" class="text-gray-300 hover:text-red-400 text-xl">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+          <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 text-sm text-gray-400">
+            <a href="#" class="hover:text-white">Política de Privacidade</a>
+            <a href="#" class="hover:text-white">Termos de Serviço</a>
+            <a href="#contato" class="hover:text-white">Contato</a>
+          </div>
+        </div>
+      </div>
     </div>
   </footer>
 
@@ -243,8 +654,7 @@
     <audio id="backgroundMusic" loop>
       <source src="https://www.bensound.com/bensound-music/bensound-ukulele.mp3" type="audio/mp3">
     </audio>
-    <button onclick="toggleMusic()" class="bg-pink-500 text-white p-2 rounded-full" title="Alternar música">
-      <span class="sr-only">Alternar música</span>
+    <button onclick="toggleMusic()" class="bg-pink-500 text-white p-3 rounded-full shadow-lg hover:bg-pink-600" title="Alternar música">
       <i id="musicIcon" class="fas fa-volume-up"></i>
     </button>
   </div>
@@ -282,33 +692,168 @@
       });
     }
     
+    // Filtros de portfólio
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class de todos os botões
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Adiciona active class ao botão clicado
+        button.classList.add('active');
+        
+        const filterValue = button.getAttribute('data-filter');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        portfolioItems.forEach(item => {
+          if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+    
     // Modal do portfólio
-    function openModal(imageSrc) {
+    const portfolioImages = [
+      { 
+        src: 'Casamento.png', 
+        title: 'Convite Romântico | Casamento Marina & João',
+        description: 'Design elegante com flores e tons pastéis, animação de pétalas caindo'
+      },
+      { 
+        src: 'conviteinfantil.png', 
+        title: 'Festa Heróica | Aniversário do Pedro',
+        description: 'Tema super-heróis com animação de efeitos especiais e música temática'
+      },
+      { 
+        src: 'conviteinfantil2.png', 
+        title: 'Chá de Fadas | Bebê Sophia',
+        description: 'Tema unicórnio com animação mágica e efeitos brilhantes'
+      },
+      { 
+        src: 'https://via.placeholder.com/600x400?text=Convite+Corporativo', 
+        title: 'Lançamento Corporativo | Tech Solutions',
+        description: 'Design profissional com animação moderna e interativa'
+      },
+      { 
+        src: 'https://via.placeholder.com/600x400?text=Convite+Casamento+2', 
+        title: 'Casamento Campestre | Ana & Lucas',
+        description: 'Tema rústico com animação de natureza e efeitos orgânicos'
+      },
+      { 
+        src: 'https://via.placeholder.com/600x400?text=Convite+Aniversário+2', 
+        title: 'Arraiá da Julia | Festa Junina',
+        description: 'Tema festa junina com animação de fogos e quadrilha'
+      }
+    ];
+    
+    let currentImageIndex = 0;
+    
+    function openModal(indexOrSrc) {
       const modal = document.getElementById('portfolioModal');
       const modalImage = document.getElementById('modalImage');
-      modalImage.src = imageSrc;
+      const modalTitle = document.getElementById('modalTitle');
+      const imageCounter = document.getElementById('imageCounter');
+      
+      if (typeof indexOrSrc === 'number') {
+        currentImageIndex = indexOrSrc;
+        modalImage.src = portfolioImages[currentImageIndex].src;
+        modalTitle.textContent = portfolioImages[currentImageIndex].title;
+      } else {
+        // Encontra o índice da imagem pelo src
+        const foundIndex = portfolioImages.findIndex(img => img.src === indexOrSrc);
+        if (foundIndex >= 0) {
+          currentImageIndex = foundIndex;
+          modalImage.src = portfolioImages[currentImageIndex].src;
+          modalTitle.textContent = portfolioImages[currentImageIndex].title;
+        }
+      }
+      
+      // Atualiza contador
+      imageCounter.textContent = `${currentImageIndex + 1} de ${portfolioImages.length}`;
+      
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
+      
+      // Adiciona listeners para teclado
+      document.addEventListener('keydown', handleKeyDown);
     }
     
     function closeModal() {
       document.getElementById('portfolioModal').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+    
+    function nextImage() {
+      currentImageIndex = (currentImageIndex + 1) % portfolioImages.length;
+      openModal(currentImageIndex);
+    }
+    
+    function prevImage() {
+      currentImageIndex = (currentImageIndex - 1 + portfolioImages.length) % portfolioImages.length;
+      openModal(currentImageIndex);
+    }
+    
+    function handleKeyDown(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      } else if (e.key === 'ArrowRight') {
+        nextImage();
+      } else if (e.key === 'ArrowLeft') {
+        prevImage();
+      }
+    }
+    
+    // Modal de vídeo
+    function openVideoModal(videoUrl) {
+      const modal = document.getElementById('videoModal');
+      const videoSource = document.getElementById('videoSource');
+      const demoVideo = document.getElementById('demoVideo');
+      
+      videoSource.src = videoUrl;
+      demoVideo.load();
+      
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      
+      // Configura link do WhatsApp baseado no vídeo selecionado
+      const whatsappLink = document.getElementById('whatsappLink');
+      // Aqui você pode personalizar a mensagem baseada no vídeo
+      whatsappLink.href = `https://wa.me/5599992267318?text=Oi%20gostei%20da%20demonstração%20do%20convite,%20gostaria%20de%20fazer%20um%20parecido%20✨`;
+    }
+    
+    function closeVideoModal() {
+      const modal = document.getElementById('videoModal');
+      const demoVideo = document.getElementById('demoVideo');
+      
+      demoVideo.pause();
+      modal.classList.add('hidden');
       document.body.style.overflow = 'auto';
     }
     
     // Player de música
     const audio = document.getElementById('backgroundMusic');
     const musicIcon = document.getElementById('musicIcon');
+    const heroMusicIcon = document.getElementById('heroMusicIcon');
+    const heroMusicText = document.getElementById('heroMusicText');
     
     function toggleMusic() {
       if (audio.paused) {
         audio.play().catch(e => console.log('Autoplay bloqueado:', e));
         musicIcon.classList.remove('fa-volume-mute');
         musicIcon.classList.add('fa-volume-up');
+        heroMusicIcon.classList.remove('fa-volume-mute');
+        heroMusicIcon.classList.add('fa-volume-up');
+        heroMusicText.textContent = 'Desligar música';
       } else {
         audio.pause();
         musicIcon.classList.remove('fa-volume-up');
         musicIcon.classList.add('fa-volume-mute');
+        heroMusicIcon.classList.remove('fa-volume-up');
+        heroMusicIcon.classList.add('fa-volume-mute');
+        heroMusicText.textContent = 'Ligar música';
       }
     }
     
@@ -318,6 +863,53 @@
         audio.play().catch(e => console.log('Autoplay bloqueado:', e));
       }
     }, { once: true });
+    
+    // Formulário de contato
+    function submitForm() {
+      // Simulação de envio - em produção, integrar com Formspree, Google Forms ou API
+      const form = document.getElementById('contactForm');
+      const successMessage = document.getElementById('successMessage');
+      
+      // Validação simples
+      const inputs = form.querySelectorAll('input, textarea');
+      let isValid = true;
+      
+      inputs.forEach(input => {
+        if (!input.value.trim()) {
+          input.classList.add('border-red-500');
+          isValid = false;
+        } else {
+          input.classList.remove('border-red-500');
+        }
+      });
+      
+      if (isValid) {
+        // Simula envio (substituir por código real de envio)
+        setTimeout(() => {
+          form.reset();
+          successMessage.classList.remove('hidden');
+          
+          // Esconde a mensagem após 5 segundos
+          setTimeout(() => {
+            successMessage.classList.add('hidden');
+          }, 5000);
+        }, 1000);
+      }
+    }
+    
+    // Alternativa: Enviar para WhatsApp
+    function sendToWhatsApp() {
+      const name = document.querySelector('#contactForm input[type="text"]').value;
+      const email = document.querySelector('#contactForm input[type="email"]').value;
+      const message = document.querySelector('#contactForm textarea').value;
+      
+      const whatsappText = `Olá! Meu nome é ${name} (${email}). ${message}`;
+      const encodedText = encodeURIComponent(whatsappText);
+      window.open(`https://wa.me/5599992267318?text=${encodedText}`, '_blank');
+    }
+    
+    // Atualiza o ano no rodapé
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
