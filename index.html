@@ -143,8 +143,7 @@
         <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="aniversario">Aniversário</button>
         <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="cha-de-bebe">Chá de Bebê</button>
         <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 hover:bg-gray-300" data-filter="corporativo">Corporativo</button>
-      </div>
-      
+  </div>
       <div class="portfolio-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         <!-- Item 1 - Casamento Flores -->
         <div class="portfolio-item" data-category="casamento">
@@ -178,7 +177,7 @@
             <span class="badge badge-new">Novo</span>
             <img src="midia/spiderMan/spider man Aniversario foto.png" loading="lazy" alt="Convite digital para aniversário infantil - tema super-heróis" class="w-full h-64 object-cover">
             <div class="item-overlay">
-              <h3 class="font-bold text-white">Festa Heróica  | Aniversário do Pedro</h3>
+              <h3 class="font-bold text-white">Festa Heróica | Aniversário do Pedro</h3>
               <p class="text-sm text-gray-200">Tema super-heróis com animação de efeitos especiais e música temática</p>
             </div>
           </div>
@@ -243,7 +242,7 @@
           </div>
         </div>
         
-        <!-- Item 4 - Corporativo -->
+        <!-- Item 4 - Corporativo 
         <div class="portfolio-item" data-category="corporativo">
           <div class="relative overflow-hidden rounded-lg shadow">
             <img src="midia/acai/acai.png" loading="lazy" alt="Convite digital para evento corporativo - tema profissional" class="w-full h-64 object-cover">
@@ -256,7 +255,7 @@
             <h3 class="font-bold text-gray-800">Evento Corporativo</h3>
             <p class="text-sm text-gray-600">Tema Profissional</p>
             <div class="mt-3 flex justify-center space-x-2">
-              <button onclick="openVideoModal('midia/acai/acai.mp4')" class="text-pink-500 hover:text-pink-700 text-sm">
+              <button onclick="openVideoModal('https://youtu.be/1VQi1aQtSVM')" class="text-pink-500 hover:text-pink-700 text-sm">
                 <i class="fas fa-play mr-1"></i> Ver animação
               </button>
               <a href="https://wa.me/5599992267318?text=Oi%20gostei%20muito%20do%20convite%20corporativo%20(tema%20profissional),%20gostaria%20de%20fazer%20um%20parecido%20✨" class="text-green-500 hover:text-green-700 text-sm">
@@ -265,7 +264,30 @@
             </div>
           </div>
         </div>
-        
+        -->
+        <!-- Item 4 - Corporativo -->
+<div class="portfolio-item" data-category="corporativo">
+  <div class="relative overflow-hidden rounded-lg shadow">
+    <img src="midia/acai/acai.png" loading="lazy" alt="Convite digital para evento corporativo - tema profissional" class="w-full h-64 object-cover">
+    <div class="item-overlay">
+      <h3 class="font-bold text-white">Lançamento Corporativo | Tech Solutions</h3>
+      <p class="text-sm text-gray-200">Design profissional com animação moderna e interativa</p>
+    </div>
+  </div>
+  <div class="mt-4 text-center">
+    <h3 class="font-bold text-gray-800">Evento Corporativo</h3>
+    <p class="text-sm text-gray-600">Tema Profissional</p>
+    <div class="mt-3 flex justify-center space-x-2">
+      <button onclick="openYouTubeModal('1VQi1aQtSVM')" class="text-pink-500 hover:text-pink-700 text-sm">
+        <i class="fas fa-play mr-1"></i> Ver animação
+      </button>
+      <a href="https://wa.me/5599992267318?text=Oi%20gostei%20muito%20do%20convite%20corporativo%20(tema%20profissional),%20gostaria%20de%20fazer%20um%20parecido%20✨" class="text-green-500 hover:text-green-700 text-sm">
+        <i class="fab fa-whatsapp mr-1"></i> Solicitar igual
+      </a>
+    </div>
+  </div>
+</div>
+
         <!-- Item 5 - Casamento -->
         <div class="portfolio-item" data-category="casamento">
           <div class="relative overflow-hidden rounded-lg shadow">
@@ -513,6 +535,26 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="assests/js.js"></script>
+
+ <!-- Modal para YouTube Video -->
+<div id="youtubeModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+  <div class="bg-white p-6 rounded-lg max-w-4xl w-full mx-4">
+    <div class="flex justify-between items-center mb-4">
+      <h3 id="youtubeTitle" class="text-xl font-bold text-gray-800">Demonstração do Convite</h3>
+      <button onclick="closeYouTubeModal()" class="text-gray-500 hover:text-gray-700">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="aspect-w-16 aspect-h-9">
+      <iframe id="youtubeIframe" class="w-full h-96" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="mt-4 text-center">
+      <a id="youtubeWhatsappLink" href="#" class="inline-flex items-center justify-center bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+        <i class="fab fa-whatsapp mr-2"></i> Solicitar este modelo
+      </a>
+    </div>
+  </div>
+</div>
   
 </body>
 </html>

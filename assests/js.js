@@ -248,3 +248,51 @@ function sendToWhatsApp() {
 
 // Atualiza o ano no rodapé
 document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+// Modal de YouTube
+function openYouTubeModal(videoId) {
+  const modal = document.getElementById('youtubeModal');
+  const iframe = document.getElementById('youtubeIframe');
+  const whatsappLink = document.getElementById('youtubeWhatsappLink');
+  
+  // Configura o iframe com o vídeo do YouTube
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1`;
+  
+  // Configura link do WhatsApp
+  whatsappLink.href = `https://wa.me/5599992267318?text=Oi%20gostei%20do%20convite%20corporativo%20que%20vi%20no%20vídeo,%20gostaria%20de%20fazer%20um%20parecido%20✨`;
+  
+  // Exibe o modal
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+  
+  // Adiciona listener para teclado
+  document.addEventListener('keydown', handleYouTubeModalKeyDown);
+}
+
+function closeYouTubeModal() {
+  const modal = document.getElementById('youtubeModal');
+  const iframe = document.getElementById('youtubeIframe');
+  
+  // Para o vídeo
+  iframe.src = '';
+  
+  // Fecha o modal
+  modal.classList.add('hidden');
+  document.body.style.overflow = 'auto';
+  
+  // Remove listener do teclado
+  document.removeEventListener('keydown', handleYouTubeModalKeyDown);
+}
+
+function handleYouTubeModalKeyDown(e) {
+  if (e.key === 'Escape') {
+    closeYouTubeModal();
+  }
+}
+
+// Fecha ao clicar fora do conteúdo
+document.getElementById('youtubeModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeYouTubeModal();
+  }
+});
